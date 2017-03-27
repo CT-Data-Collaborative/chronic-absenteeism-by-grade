@@ -17,7 +17,7 @@ all_csvs <- dir(path, recursive=T, pattern = ".csv")
 
 chronic_absent_grade <- data.frame(stringsAsFactors = F)
 chronic_absent_grade_noTrend <- grep("Trend", all_csvs, value=T, invert=T)
-###Chronic Absenteeism All-Students###
+
 for (i in 1:length(chronic_absent_grade_noTrend)) {
   current_file <- read.csv(paste0(path, "/", chronic_absent_grade_noTrend[i]), stringsAsFactors=F, header=F )
   current_file <- current_file[-c(1:2),]
@@ -32,6 +32,9 @@ for (i in 1:length(chronic_absent_grade_noTrend)) {
 
 #Add statewide data...
 
+#Removes extra spaces (tab) in Grade column
+chronic_absent_grade$Grade <- gsub("   ", " ", chronic_absent_grade$Grade)
+
 #backfill Districts
 district_dp_URL <- 'https://raw.githubusercontent.com/CT-Data-Collaborative/ct-school-district-list/master/datapackage.json'
 district_dp <- datapkg_read(path = district_dp_URL)
@@ -39,9 +42,12 @@ districts <- (district_dp$data[[1]])
 
 chronic_absent_grade_fips <- merge(chronic_absent_grade, districts, by.x = "District", by.y = "District", all=T)
 
+#Set FixedDistrict to Connecticut when District is "State Level"
+chronic_absent_grade_fips[["FixedDistrict"]][chronic_absent_grade_fips$"District" == "State Level"]<- "Connecticut"
+
 chronic_absent_grade_fips$District <- NULL
 
-chronic_absent_grade_fips<-chronic_absent_grade_fips[!duplicated(chronic_absent_grade_fips), ]####
+chronic_absent_grade_fips<-chronic_absent_grade_fips[!duplicated(chronic_absent_grade_fips), ]
 
 #backfill year
 years <- c("2011-2012",
@@ -64,15 +70,15 @@ backfill_years <- arrange(backfill_years, FixedDistrict)
 complete_chronic_absent_grade <- merge(chronic_absent_grade_fips, backfill_years, by = c("FixedDistrict", "Grade", "Year"), all=T)
 
 grades <- c("Kindergarten", 
-            "Grade   1", 
-            "Grade   2", 
-            "Grade   3", 
-            "Grade   4", 
-            "Grade   5", 
-            "Grade   6", 
-            "Grade   7", 
-            "Grade   8", 
-            "Grade   9", 
+            "Grade 1", 
+            "Grade 2", 
+            "Grade 3", 
+            "Grade 4", 
+            "Grade 5", 
+            "Grade 6", 
+            "Grade 7", 
+            "Grade 8", 
+            "Grade 9", 
             "Grade 10", 
             "Grade 11", 
             "Grade 12")
