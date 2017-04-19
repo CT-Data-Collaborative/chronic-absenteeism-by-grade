@@ -1,7 +1,10 @@
 Chronic-Absenteeism-by-Grade
 
 [![Build Status](https://travis-ci.org/CT-Data-Collaborative/chronic-absenteeism-by-grade.svg?branch=master)](https://travis-ci.org/CT-Data-Collaborative/chronic-absenteeism-by-grade)
-A short description of the project.
+
+Chronic Absenteeism reports the percentage of chronically absent students during a school year, per subgroup.
+
+Data Source: <http://edsight.ct.gov/>
 
 ## License MIT
 
