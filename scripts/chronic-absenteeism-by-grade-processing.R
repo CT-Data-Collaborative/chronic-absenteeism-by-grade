@@ -54,7 +54,8 @@ years <- c("2011-2012",
            "2012-2013",
            "2013-2014",
            "2014-2015",
-           "2015-2016")
+           "2015-2016", 
+           "2016-2017")
 
 backfill_years <- expand.grid(
   `FixedDistrict` = unique(districts$`FixedDistrict`),
@@ -111,9 +112,26 @@ complete_chronic_absent_long$`Measure Type` <- "Percent"
 #Rename Variable columns
 complete_chronic_absent_long$`Variable` <- "Chronically Absent Students"
 
+complete_chronic_absent_long$Grade <- factor(complete_chronic_absent_long$Grade, 
+                                             levels = c("Kindergarten", 
+                                                        "Grade 1", 
+                                                        "Grade 2",
+                                                        "Grade 3",
+                                                        "Grade 4",
+                                                        "Grade 5",
+                                                        "Grade 6",
+                                                        "Grade 7",
+                                                        "Grade 8",
+                                                        "Grade 9",
+                                                        "Grade 10",
+                                                        "Grade 11",
+                                                        "Grade 12"))
+
+
 #Order columns
 complete_chronic_absent_long <- complete_chronic_absent_long %>% 
-  select(`District`, `FIPS`, `Year`, `Grade`, `Variable`, `Measure Type`, `Value`)
+  select(District, FIPS, Year, Grade, `Measure Type`, Variable, Value) %>% 
+  arrange(District, Year, Grade)
 
 #Use this to find if there are any duplicate entires for a given district
 test <- complete_chronic_absent_long[,c("District", "Year", "Grade")]
@@ -122,7 +140,7 @@ test2<-test[duplicated(test), ]
 #Write CSV
 write.table(
   complete_chronic_absent_long,
-  file.path(path_to_top_level, "data", "chronic_absenteeism_by_grade_2012-2016.csv"),
+  file.path(path_to_top_level, "data", "chronic_absenteeism_by_grade_2012-2017.csv"),
   sep = ",",
   row.names = F
 )
