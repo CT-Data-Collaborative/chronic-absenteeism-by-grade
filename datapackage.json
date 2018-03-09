@@ -255,7 +255,22 @@
         "number type": "float",
         "value": 19.6
       } 
-    }    
+    }, 
+    {
+      "type": "$lookup",
+      "filter": {
+        "District": "Hampton School District",
+        "Year": "2016-2017",
+        "Variable": "Chronically Absent Students",
+        "Grade": "Grade 6",
+        "Measure Type": "Percent" 
+      },
+      "expected": {
+        "type": "$match",
+        "number type": "float",
+        "value": -9999
+      } 
+    } 
   ],
   "dimension_groups": [
     {
