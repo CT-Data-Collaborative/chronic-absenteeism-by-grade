@@ -127,6 +127,7 @@ complete_chronic_absent_long$Grade <- factor(complete_chronic_absent_long$Grade,
                                                         "Grade 11",
                                                         "Grade 12"))
 
+complete_chronic_absent_long$Value <- as.numeric(complete_chronic_absent_long$Value)
 
 #Order columns
 complete_chronic_absent_long <- complete_chronic_absent_long %>% 

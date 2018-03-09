@@ -92,7 +92,7 @@
     },
     "suppression": {
       "ckan_name": "Suppression",
-      "value": "Disaggregations resulting in counts of less than 20 students are suppressed",
+      "value": "Disaggregations where either the numerator is less than 6 or the denominator is less than 20 are suppressed.",
       "type": "string"
     },
     "technical_notes": {
@@ -118,6 +118,16 @@
     "subdomain": {
       "ckan_name": "Subdomain",
       "value": "Student Behavior",
+      "type": "string"
+    },
+    "numerator": {
+      "ckan_name": "Numerator",
+      "value": "Total number of chronically absent students, per subgroup.",
+      "type": "string"
+    },
+    "denominator": {
+      "ckan_name": "Denominator",
+      "value": "Total number of students, per subgroup.",
       "type": "string"
     },
     "geography": {
