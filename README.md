@@ -1,6 +1,6 @@
 Chronic-Absenteeism-by-Grade
 
-Chronic Absenteeism reports the percentage of chronically absent students during a school year, per subgroup.
+Chronic Absenteeism reports the percentage of chronically absent students during a school year, per grade.
 
 Data Source: <http://edsight.ct.gov/>
 

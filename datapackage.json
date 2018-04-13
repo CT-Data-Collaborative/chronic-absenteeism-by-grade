@@ -2,7 +2,7 @@
   "name": "chronic-absenteeism-by-grade",
   "datapackage_version": "1.0-beta.18",
   "title": "Chronic Absenteeism by Grade",
-  "description": "Chronic Absenteeism reports the percentage of chronically absent students during a school year, per subgroup.",
+  "description": "Chronic Absenteeism reports the percentage of chronically absent students during a school year, per grade.",
   "version": "1.0",
   "licenses": [{
     "url": "http://opendatacommons.org/licenses/pddl/",
